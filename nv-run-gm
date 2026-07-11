@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Inject NVIDIA variables to bypass Proton boundaries
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __VK_LAYER_NV_optimus=NVIDIA_only
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export VK_DRIVER_FILES=/usr/share/vulkan/icd.d/nvidia_icd.json
+
+# Disable Intel Turbo Boost and increase fan speed
+sudo systemctl start intel-noturbo.service
+sudo systemctl start omen-maxfan.service
+
+# Execute script when a game launches
+"$@"
+
+# Revert to previous state
+sudo systemctl stop omen-maxfan.service
+sudo systemctl stop intel-noturbo.service
