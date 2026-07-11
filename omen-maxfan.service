@@ -1,0 +1,12 @@
+[Unit]
+Description=Enable HP Omen Max Fan Speed
+After=sysinit.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo 0 > /sys/devices/platform/hp-wmi/hwmon/hwmon*/pwm1_enable'
+ExecStop=/bin/sh -c 'echo 2 > /sys/devices/platform/hp-wmi/hwmon/hwmon*/pwm1_enable'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
