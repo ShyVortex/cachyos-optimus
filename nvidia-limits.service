@@ -1,0 +1,12 @@
+[Unit]
+Description=Apply NVIDIA GPU frequency limits at boot
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/nvidia-smi -lgc 210,1600
+ExecStart=/usr/bin/nvidia-smi -lmc 810,6001
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

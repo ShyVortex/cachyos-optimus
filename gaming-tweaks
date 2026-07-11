@@ -1,1 +1,1 @@
-%wheel ALL=(ALL) NOPASSWD: /usr/bin/systemctl start intel-noturbo.service, /usr/bin/systemctl stop intel-noturbo.service, /usr/bin/systemctl start omen-maxfan.service, /usr/bin/systemctl stop omen-maxfan.service
+%wheel ALL=(ALL) NOPASSWD: /usr/bin/systemctl start intel-noturbo.service, /usr/bin/systemctl stop intel-noturbo.service, /usr/bin/systemctl start omen-maxfan.service, /usr/bin/systemctl stop omen-maxfan.service, /usr/bin/systemctl start nvidia-limits.service, /usr/bin/systemctl stop nvidia-limits.service, /usr/bin/nvidia-smi

@@ -32,26 +32,26 @@ To prevent the Gamescope session from crashing or returning a black screen while
 
 4. Reboot your computer to apply the changes. Now, Gaming Mode will stably start on your laptop's internal screen.
 
-## Step 2: Install Thermal Services and Sudoers Rules
+## Step 2: Install Thermal Services, GPU Limits, and Sudoers Rules
 
-The `nv-run-gm` script automatically disables CPU Turbo Boost and sets the fans to maximum speed when a game launches in Gaming Mode.
+The `nv-run-gm` script automatically disables CPU Turbo Boost, sets the fans to maximum speed, and sets custom GPU frequency/performance limits when a game launches in Gaming Mode.
 
 1. Make sure you have installed the [intel-noturbo](https://github.com/ShyVortex/intel-noturbo) service.
-2. Copy the `omen-maxfan.service` (included in this repository) to the systemd folder:
+2. Copy the systemd service files (`omen-maxfan.service` and `nvidia-limits.service` included in this repository) to the systemd folder:
    ```bash
-   sudo cp omen-maxfan.service /etc/systemd/system/
+   sudo cp omen-maxfan.service nvidia-limits.service /etc/systemd/system/
    ```
-3. Reload the systemd daemon so it recognizes the new service:
+3. Reload the systemd daemon so it recognizes the new services:
    ```bash
    sudo systemctl daemon-reload
    ```
-4. **Crucial:** To allow the script to start/stop these services without prompting for a password (which would break the Gaming Mode UI), you must configure `sudoers`. Run:
+4. **Crucial:** To allow the wrappers to start/stop these services and run `nvidia-smi` without prompting for a password (which would break the Gaming Mode UI), you must configure `sudoers`. Run:
    ```bash
    sudo visudo -f /etc/sudoers.d/gaming-tweaks
    ```
 5. Paste the following line exactly as it is, then save and exit:
    ```text
-   %wheel ALL=(ALL) NOPASSWD: /usr/bin/systemctl start intel-noturbo.service, /usr/bin/systemctl stop intel-noturbo.service, /usr/bin/systemctl start omen-maxfan.service, /usr/bin/systemctl stop omen-maxfan.service
+   %wheel ALL=(ALL) NOPASSWD: /usr/bin/systemctl start intel-noturbo.service, /usr/bin/systemctl stop intel-noturbo.service, /usr/bin/systemctl start omen-maxfan.service, /usr/bin/systemctl stop omen-maxfan.service, /usr/bin/systemctl start nvidia-limits.service, /usr/bin/systemctl stop nvidia-limits.service, /usr/bin/nvidia-smi
    ```
 
 
