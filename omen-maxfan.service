@@ -4,8 +4,8 @@ After=sysinit.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'echo 0 > /sys/devices/platform/hp-wmi/hwmon/hwmon*/pwm1_enable'
-ExecStop=/bin/sh -c 'echo 2 > /sys/devices/platform/hp-wmi/hwmon/hwmon*/pwm1_enable'
+ExecStart=/bin/sh -c 'for f in /sys/devices/platform/hp-wmi/hwmon/hwmon*/pwm1_enable; do echo 0 > "$f"; done'
+ExecStop=/bin/sh -c 'for f in /sys/devices/platform/hp-wmi/hwmon/hwmon*/pwm1_enable; do echo 2 > "$f"; done'
 RemainAfterExit=yes
 
 [Install]

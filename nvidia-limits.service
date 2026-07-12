@@ -6,6 +6,8 @@ After=multi-user.target
 Type=oneshot
 ExecStart=/usr/bin/nvidia-smi -lgc 210,1600
 ExecStart=/usr/bin/nvidia-smi -lmc 810,6001
+ExecStop=/usr/bin/nvidia-smi -rgc
+ExecStop=/usr/bin/nvidia-smi -rmc
 RemainAfterExit=yes
 
 [Install]
