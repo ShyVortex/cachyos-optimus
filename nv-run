@@ -13,6 +13,6 @@ sudo nvidia-smi -lmc 810,6001
 # Execute script when a game launches
 "$@"
 
-# Reset NVIDIA Performance Level when closing the game
-sudo nvidia-smi -rgc
-sudo nvidia-smi -rmc
+# Reset NVIDIA Performance Level when closing the game (default: false)
+# sudo nvidia-smi -rgc
+# sudo nvidia-smi -rmc

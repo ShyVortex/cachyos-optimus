@@ -16,5 +16,5 @@ sudo systemctl start nvidia-limits.service
 
 # Revert to previous state
 sudo systemctl stop omen-maxfan.service
-sudo systemctl stop intel-noturbo.service
-sudo systemctl stop nvidia-limits.service
+# sudo systemctl stop intel-noturbo.service (disabled)
+# sudo systemctl stop nvidia-limits.service (disabled)
